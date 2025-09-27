@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 public class Gestor {
     private Personajes[] personajes = new Personajes[100];
     private int total = 0;
-    private Batalla[] batallas= new Batalla[100];
+    private Batalla[] batallas= new Batalla[450];
     private int totalBatallas = 0;
 
     public void agregarPokemon(String nombre, String arma, int hp, int ataque, int velocidad, int agilidad, int defensa){
@@ -91,24 +91,25 @@ public class Gestor {
     }
 
     public void registrarBatalla(String personaje1, String personaje2, String ganador) {
-        if (totalBatallas >= batallas.length) {
-        JOptionPane.showMessageDialog(null, "No se pueden registrar más batallas");
+    if (totalBatallas >= batallas.length) {
         return;
+    }
+    batallas[totalBatallas] = new Batalla(totalBatallas + 1, personaje1, personaje2, ganador);
+    totalBatallas++;
 }
 
-        batallas[totalBatallas] = new Batalla(totalBatallas + 1, personaje1, personaje2, ganador);
-        totalBatallas++;
+public String listarBatallas() {
+    if (totalBatallas == 0) {
+        return "No hay batallas registradas.";
     }
-    
-    public String listarBatallas(){
-        if (totalBatallas ==0){
-            return "No hay batallas registradas";
-        }
-        String historial ="";
-        for (int i =0; i<totalBatallas; i++){
-            historial+=batallas[i].getHistorial();
-        }
-        return historial;
+    String historial = "";
+    for (int i = 0; i < totalBatallas; i++) {
+        historial += batallas[i].getHistorial();
+    }
+    return historial;
+}
+    public int getTotalBatallas() {
+    return totalBatallas;
 }
     
     public Personajes getPersonaje(int index) {

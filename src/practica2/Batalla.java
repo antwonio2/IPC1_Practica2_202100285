@@ -10,18 +10,13 @@ public class Batalla {
     private String ganador;
     private String fecha;
     
-    public Batalla(int numero, String personaje1, String personaje2, String ganador, String fecha){
+    public Batalla(int numero, String personaje1, String personaje2, String ganador){
         this.numero = numero;
         this.personaje1 =personaje1;
         this.personaje2 = personaje2;
         this.ganador = ganador;
-    
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        this.fecha = LocalDateTime.now().format(dtf);
-    }
-
-    Batalla(int i, String personaje1, String personaje2, String ganador) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        this.fecha = LocalDateTime.now().format(f);
     }
     
     public String getHistorial(){
